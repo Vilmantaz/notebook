@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Kategorijos</h3>
+    {% if categories %}
+        {% for category in categories %}
+            <li> {{category}} </li>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
