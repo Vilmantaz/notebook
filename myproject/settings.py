@@ -130,6 +130,10 @@ MEDIA_URL = 'media/'
 
 LOGIN_REDIRECT_URL = '/'
 
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '1167d2c5c86f77'
+EMAIL_HOST_PASSWORD = '1acb16f935eb78'
+EMAIL_PORT = '2525'
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,

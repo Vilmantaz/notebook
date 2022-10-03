@@ -31,7 +31,7 @@ body header .title h1 {
 
 .regform {
     margin: auto;
-    width: 50vw;
+    width: 35vw;
 }
 
 .regform h3 {
@@ -69,4 +69,38 @@ body header .title h1 {
     text-decoration: none;
     font-size: large;
     color: rgba(104, 3, 3, 0.895);
+}
+
+.loginform {
+    margin: auto;
+    margin-top: 10rem;
+    width: 35vw;
+}
+
+.loginform p a {
+    text-decoration: none;
+    font-size: large;
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.loginsubmit {
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+}
+
+.logintable tr {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.loginlabel {
+    font-size: 1.2rem;
+    color: brown;
+}
+.logininput input {
+    height: 2rem;
+    border-radius: 5px;
+    width: 30vw;
 }
