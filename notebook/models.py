@@ -1,5 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField('Pavadinimas', max_length=200)
@@ -19,4 +20,15 @@ class Record(models.Model):
 
 
     def __str__(self):
-            return f'{self.name} {self.creation_date}'
+            return f'{self.name} {self.content} {self.creation_date}'
+
+class User(models.Model):
+    category = models.ManyToManyField('Category')
+    record = models.ForeignKey('Record', on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def display_category(self):
+            return ', '.join(category.name for category in self.category.all())
+            
+    def __str__(self):
+            return f'{self.category} {self.record}'

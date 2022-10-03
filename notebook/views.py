@@ -3,6 +3,9 @@ from .models import Category, Record
 from django.shortcuts import redirect
 from django.contrib.auth.forms import User
 from django.contrib import messages
+from django.views import generic
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
     
@@ -17,6 +20,20 @@ def index(request):
         'records_num': records_num,
     }
     return render(request, 'notebook/index.html', context=context)
+
+
+# def user_categories(request):
+#     if request.user.is_authenticated:
+        
+#         categories = User.category
+#     return render(request, 'notebook/categories.html', {'categories': categories})
+
+class UserCategoriesListView(LoginRequiredMixin, ListView):
+   model = Category
+   model = Record
+   context_object_name = 'categories'
+   template_name ='notebook/categories.html'
+
 
 def register(request):
     if request.method == "POST":
@@ -38,3 +55,4 @@ def register(request):
             messages.error(request, 'Slaptažodžiai nesutampa!')
             return redirect('notebook:register')
     return render(request, 'notebook/register.html')
+
