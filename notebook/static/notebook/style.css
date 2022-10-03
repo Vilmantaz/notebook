@@ -1,3 +1,72 @@
 body {
     background-color: beige;
 }
+body header {
+    height: 5rem;
+    background-color: rgb(255, 142, 101);
+    padding: 1rem;
+    display: flex;}
+
+body header .title {
+    color: rgb(50, 103, 200);
+    font-size: 1.3rem;
+    margin: auto;
+}
+
+body header .reglinks {
+    display: flex;
+}
+
+body header .reglinks a {
+    color: rgba(104, 3, 3, 0.895);
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: auto;
+    padding: 0.5rem;
+}
+
+body header .title h1 {
+    margin: 0;
+}
+
+.regform {
+    margin: auto;
+    width: 50vw;
+}
+
+.regform h3 {
+    font-size: 2rem;
+    text-align: center;
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.regformcell {
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.regformcell label {
+    font-size: 1.2rem;
+    color: brown;
+}
+
+.regformcell input {
+    height: 2rem;
+    border-radius: 5px;
+}
+
+.regform button {
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+}
+
+.regform p {
+    margin: 1.5rem;
+}
+.regform p a {
+    text-decoration: none;
+    font-size: large;
+    color: rgba(104, 3, 3, 0.895);
+}
