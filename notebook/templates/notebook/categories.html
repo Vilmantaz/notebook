@@ -1,18 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-   
-        {% if categories %}
-            {% for category in categories %}
-                <p> {{category}} </p>
-                {% for record in records %}
-                    <p> {{ record }} </p>
-                {% endfor %}
-            {% endfor %}
+<div>
+    <h1>Mano Kategorijos</h1>
         
-        {% else %}
-            <p>Nieko nėra</p>
-        {% endif %}
+    {% if user_categories %}
+        {% for category in user_categories %}
+            <p> {{category.category.name}} </p>
+        {% endfor %}
+    
+    {% else %}
+        <p>Nieko nėra</p>
+    {% endif %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'notebook:categories-new'%}">Nauja kategorija</a></li>
 
+</div>
+<div>
+    <h1>Mano Įrašai</h1>
+    {% if user_records %}
+        {% for record in user_records %}
+            
+            <p> {{record.name}} </p>
+       
+        {% endfor %}
+    
+    {% else %}
+        <p>Nieko nėra</p>
+    {% endif %}
+</div>
+    
 
 {% endblock %}
