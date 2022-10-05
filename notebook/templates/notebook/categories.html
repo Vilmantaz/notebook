@@ -1,33 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-    <h1>Mano Kategorijos</h1>
+<div class="mainblock">
+    <div class="category-block">
+        <h1>Mano Kategorijos</h1>
+            
+        {% if user_categories %}
+            {% for category in user_categories %}
+                <li><a href="{{category.id}}"> {{category.name}}</a></li>
+            {% endfor %}
         
-    {% if user_categories %}
-        {% for category in user_categories %}
-            <p> {{category.category.name}} </p>
-        {% endfor %}
+        {% else %}
+            <p>Nieko nėra</p>
+        {% endif %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'notebook:categories-new'%}">Nauja kategorija</a></li>
+        {% comment %}
+            <div>
+                <a href="{% url 'notebook:user-category-update' category.id %}">Redaguoti</a>
+            </div>
+        {% endcomment %}
+    </div>
     
-    {% else %}
-        <p>Nieko nėra</p>
-    {% endif %}
-    <li class="nav-item"><a class="nav-link" href="{% url 'notebook:categories-new'%}">Nauja kategorija</a></li>
+    <div class="category-div">
+        <h1>Mano Įrašai</h1>
+        {% if user_records %}
+            {% for record in user_records %}
+                
+                <p> {{object.record.name}} </p>
+           
+            {% endfor %}
+        
+        {% else %}
+            <p>Nieko nėra</p>
+        {% endif %}
+    </div>
 
 </div>
-<div>
-    <h1>Mano Įrašai</h1>
-    {% if user_records %}
-        {% for record in user_records %}
-            
-            <p> {{record.name}} </p>
-       
-        {% endfor %}
-    
-    {% else %}
-        <p>Nieko nėra</p>
-    {% endif %}
-</div>
+
     
 
 {% endblock %}

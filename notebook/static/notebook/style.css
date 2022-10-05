@@ -104,3 +104,37 @@ body header .title h1 {
     border-radius: 5px;
     width: 30vw;
 }
+
+.mainblock {
+    display: flex;
+}
+
+.category-block {
+    width: 25%;
+}
+
+.category-div {
+    width: 75%;
+}
+
+.record-block {
+    display: flex;
+}
+
+.record-div {
+    width: 15rem;
+    height: 10rem;
+    background-color: chocolate;
+    margin: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.record-div a {
+    padding: 2rem;
+    text-decoration: none;
+    color: black;
+}

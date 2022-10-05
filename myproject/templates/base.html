@@ -15,7 +15,7 @@
         </div>
         <div class="reglinks">
             {% if user.is_authenticated %}
-                <a href="#">{{ user.get_username }}</a>
+                <a href="{% url 'notebook:profile' %}">{{ user.get_username }}</a>
                 <a href="{% url 'notebook:index' %}">Pradžia</a>
                 <a href="{% url 'notebook:categories' %}">Kategorijos</a>
                 <a href="{% url 'logout' %}">Atsijungti</a>

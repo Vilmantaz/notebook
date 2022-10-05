@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="record-block">
+        {% if user_records %}
+            
+            {% for record in user_records %}
+                
+                    <div class="record-div">
+                        <a href="#">Pavadinimas: {{ record.name }}</a>
+                    </div>
+               
+            {% endfor %}
+        {% else %}
+            <p>Nieko nėra</p>
+        {% endif %}
+    </div>
+{% endblock %}
