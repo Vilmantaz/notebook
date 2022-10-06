@@ -4,6 +4,7 @@ from .models import Category, Record, Profile
 from django.shortcuts import redirect
 from django.contrib.auth.forms import User
 from django.contrib import messages
+from django.db.models import Q
 from django.views import generic
 from django.views.generic import ListView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -50,7 +51,8 @@ class RecordsListView(LoginRequiredMixin, generic.ListView):
     template_name ='notebook/categorie_records.html'
 
     def get_queryset(self):
-        return Record.objects.filter(user=self.request.user). order_by('category__name')
+        category_id = self.kwargs['pk']
+        return Record.objects.filter(user=self.request.user).filter(category_id = category_id)
     
 
 # def user_categories(request):
@@ -68,8 +70,8 @@ class RecordsListView(LoginRequiredMixin, generic.ListView):
 #     context_object_name = 'user_records'
 #     template_name ='notebook/categories.html'
 
-    def get_queryset(self):
-            return Record.objects.filter(user=self.request.user)
+    # def get_queryset(self):
+    #         return Record.objects.filter(user=self.request.user)
 
 # def register(request):
 #     if request.method == "POST":
@@ -127,7 +129,7 @@ def UserCategoriesCreate(request):
     user = request.user
     print(user.id)
     if request.method == "POST":
-        name = request.POST['category']
+        name = request.POST['name']
         
         if Category.objects.filter(name=name).exists():
             messages.error(request, f'Tokia kategoja {name} jau yra!')
@@ -149,7 +151,13 @@ class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-#     # def test_func(self):
-#     #     category = self.get_object()
-#     #     return self.request.user == book.reader
+    def test_func(self):
+        category = self.get_object()
+        return self.request.user == category.user
 
+
+def search(request):
+    query = request.GET.get('query')
+    search_results = Record.objects.filter(Q(name__icontains=query))
+    return render(request, 'notebook/search.html', {'records': search_results, 'query': query})
+ 

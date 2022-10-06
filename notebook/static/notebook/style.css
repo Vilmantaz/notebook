@@ -5,12 +5,14 @@ body header {
     height: 5rem;
     background-color: rgb(255, 142, 101);
     padding: 1rem;
-    display: flex;}
+    display: flex;
+}
 
 body header .title {
     color: rgb(50, 103, 200);
     font-size: 1.3rem;
     margin: auto;
+    
 }
 
 body header .reglinks {
@@ -134,11 +136,12 @@ body header .title h1 {
 
 .record-block {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .record-div {
-    width: 15rem;
-    height: 10rem;
+    width: 20rem;
+    height: 15rem;
     background-color: chocolate;
     margin: 2rem;
     border-radius: 1rem;
@@ -147,9 +150,14 @@ body header .title h1 {
     align-items: center;
 }
 
+.record-div p {
+    margin: 0;
+}
 
 .record-div a {
-    padding: 2rem;
+    padding: 1.5rem;
     text-decoration: none;
     color: black;
+    font-size: 1.5rem;
+    text-align: center;
 }

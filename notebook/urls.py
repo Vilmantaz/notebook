@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
+    path('search/', views.search, name='search'),
     path('categories/', views.CategoriesListView.as_view(), name='categories'),
     path('categories/new', views.UserCategoriesCreate, name='categories-new'),
     path('categories/records/new', views.RecordCreateView.as_view(), name='record-new'),

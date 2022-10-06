@@ -8,17 +8,15 @@
         {% if user_categories %}
             {% for category in user_categories %}
                 <li><a href="{{category.id}}"> {{category.name}}</a></li>
+                
             {% endfor %}
         
         {% else %}
             <p>Nieko nėra</p>
         {% endif %}
         <li class="nav-item"><a class="nav-link" href="{% url 'notebook:categories-new'%}">Nauja kategorija</a></li>
-        {% comment %}
-            <div>
-                <a href="{% url 'notebook:user-category-update' category.id %}">Redaguoti</a>
-            </div>
-        {% endcomment %}
+    
+  
     </div>
     
     <div class="category-div">
@@ -28,6 +26,7 @@
             {% for category in user_categories %}
                 <div  class="single-category">
                     <a href="{{category.id}}"> {{category.name}}</a>
+                    <a href="{% url 'notebook:user-category-update' category.id %}">- redaguoti</a>
                 </div>
             {% endfor %}
             {% else %}

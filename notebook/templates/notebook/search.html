@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Paieškos pagal "{{query}}" rezultatai:</h1>
+    </br>
+    {% if records %}
+        {% for record in records %}
+            <div class="record-div">
+                <a href="#">Įrašo pavadinimas:<br> {{ record.name }}</a>
+                <p>Kategorija:</p>
+                <p>{{ record.category.name }}</p>
+                {% if record.image %}
+                    <img src="{{ record.image.url }}" width="150" height="100" class="card-img-top" alt="...">
+                {% else %}
+                    <img src="https://via.placeholder.com/150x100" class="card-img-top">
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Oops. Nieko neradome :(</p>
+    {% endif %}
+{% endblock %}
