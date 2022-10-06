@@ -17,11 +17,12 @@ class Record(models.Model):
     name = models.CharField('Pavadinimas', max_length=200)
     creation_date = models.DateTimeField(auto_now_add=True)
     content = HTMLField()
+    image = models.ImageField('Paveikslėlis', upload_to='images', null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ManyToManyField('Category')
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, related_name='category')
 
-    def display_category(self):
-        return ', '.join(category.name for category in self.category.all())
+    # def display_category(self):
+    #     return ', '.join(category.name for category in self.category.all())
 
 
     def __str__(self):

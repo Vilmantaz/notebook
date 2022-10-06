@@ -7,7 +7,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class RecordAdmin(admin.ModelAdmin):
-    list_display = ('name', 'content', 'creation_date', 'display_category', 'user',)
+    list_display = ('name', 'content', 'creation_date', 'category', 'user',)
 
 # class UserRecordAdmin(admin.ModelAdmin):
 #     list_display = ('category', 'record', 'user',)

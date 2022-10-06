@@ -22,17 +22,18 @@
     </div>
     
     <div class="category-div">
-        <h1>Mano Įrašai</h1>
-        {% if user_records %}
-            {% for record in user_records %}
-                
-                <p> {{object.record.name}} </p>
-           
+        <h1>Kategorijos</h1>
+        <div style="display: flex;">
+            {% if user_categories %}
+            {% for category in user_categories %}
+                <div  class="single-category">
+                    <a href="{{category.id}}"> {{category.name}}</a>
+                </div>
             {% endfor %}
-        
-        {% else %}
-            <p>Nieko nėra</p>
-        {% endif %}
+            {% else %}
+                <p>Nieko nėra</p>
+            {% endif %}
+        </div>
     </div>
 
 </div>

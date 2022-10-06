@@ -8,7 +8,7 @@ from django.views import generic
 from django.views.generic import ListView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, CategoryCreateForm
+from .forms import RegistrationForm, RecordCreateForm
 
 
 
@@ -50,11 +50,8 @@ class RecordsListView(LoginRequiredMixin, generic.ListView):
     template_name ='notebook/categorie_records.html'
 
     def get_queryset(self):
-        return Record.objects.filter(user=self.request.user)
+        return Record.objects.filter(user=self.request.user). order_by('category__name')
     
-    def selected_category(request):
-        return Record.objects.filter()
-
 
 # def user_categories(request):
 #     if request.user.is_authenticated:
@@ -114,15 +111,15 @@ def register(request):
 def profile(request):
     return render(request, 'notebook/profile.html')
 
-# class CategoriesCreateView(LoginRequiredMixin, generic.CreateView):
-#     model = Category
-#     success_url = reverse_lazy('notebook:categories')
-#     template_name = 'notebook/user_categories_form.html'
-#     form_class = CategoryCreateForm
+class RecordCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Record
+    success_url = reverse_lazy('notebook:categories')
+    template_name = 'notebook/user_record_form.html'
+    form_class = RecordCreateForm
 
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 @login_required
@@ -142,17 +139,17 @@ def UserCategoriesCreate(request):
     return render(request, 'notebook/user_categories_form.html')
 
 
-# class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-#     model = Category
-#     fields = ['name']
-#     success_url = reverse_lazy('notebook:categories')
-#     template_name = 'notebook/user_categories_form.html'
+class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Category
+    fields = ['name']
+    success_url = reverse_lazy('notebook:categories')
+    template_name = 'notebook/user_categories_form.html'
 
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 #     # def test_func(self):
-#     #     book = self.get_object()
+#     #     category = self.get_object()
 #     #     return self.request.user == book.reader
 

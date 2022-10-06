@@ -117,6 +117,21 @@ body header .title h1 {
     width: 75%;
 }
 
+.single-category {
+    width: 200px; 
+    height: 200px; 
+    background-color:rgb(205, 163, 108);
+    margin: 2rem;
+    text-align: center;
+}
+
+.single-category a {
+    text-decoration: none;
+    color: black;
+    
+    
+}
+
 .record-block {
     display: flex;
 }

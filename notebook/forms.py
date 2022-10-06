@@ -28,9 +28,9 @@ class RegistrationForm(forms.Form):
         if password != password2:
             raise ValidationError('Slaptažodžiai nesutampa!')
 
-class CategoryCreateForm(forms.ModelForm):
+class RecordCreateForm(forms.ModelForm):
 
     class Meta:
-        model = Category
-        fields = ['name', 'user']
-        # widgets = {'user': forms.HiddenInput(), 'name': forms.CharField(max_length=200)}
+        model = Record
+        fields = ['name', 'content', 'image', 'category']
+ 
