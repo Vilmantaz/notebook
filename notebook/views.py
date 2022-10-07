@@ -122,6 +122,20 @@ class RecordCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+class RecordUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = Record
+    fields = ['name', 'content', 'image']
+    success_url = reverse_lazy('notebook:categories')
+    template_name = 'notebook/user_record_form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        record = self.get_object()
+        return self.request.user == record.user
+
 
 @login_required
 def UserCategoriesCreate(request):

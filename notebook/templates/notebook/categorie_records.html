@@ -18,6 +18,7 @@
                     {% else %}
                         <img src="https://via.placeholder.com/150x100" class="card-img-top">
                     {% endif %}
+                    <a href="{% url 'notebook:category-record-update' record.id %}"> Redaguoti</a>
                 </div>
             {% endfor %}
         {% else %}
