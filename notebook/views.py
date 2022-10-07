@@ -6,7 +6,6 @@ from django.contrib.auth.forms import User
 from django.contrib import messages
 from django.db.models import Q
 from django.views import generic
-from django.views.generic import ListView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, RecordCreateForm
@@ -141,7 +140,7 @@ def UserCategoriesCreate(request):
     return render(request, 'notebook/user_categories_form.html')
 
 
-class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Category
     fields = ['name']
     success_url = reverse_lazy('notebook:categories')
@@ -155,9 +154,21 @@ class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         category = self.get_object()
         return self.request.user == category.user
 
+class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = Category
+    success_url = reverse_lazy('notebook:categories')
+    template_name = 'notebook/user_category_delete.html'
 
+    def test_func(self):
+        category = self.get_object()
+        return self.request.user == category.user
+
+@login_required
 def search(request):
     query = request.GET.get('query')
     search_results = Record.objects.filter(Q(name__icontains=query))
     return render(request, 'notebook/search.html', {'records': search_results, 'query': query})
  
+class UserRecordDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Record
+    template_name = 'notebook/user_record.html'

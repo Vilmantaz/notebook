@@ -27,6 +27,7 @@
                 <div  class="single-category">
                     <a href="{{category.id}}"> {{category.name}}</a>
                     <a href="{% url 'notebook:user-category-update' category.id %}">- redaguoti</a>
+                    <a href="{% url 'notebook:user-category-delete' category.id %}">Ištrinti</a>
                 </div>
             {% endfor %}
             {% else %}

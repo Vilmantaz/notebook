@@ -10,7 +10,7 @@
             
             {% for record in user_records %}
                 <div class="record-div">
-                    <a href="#">Įrašo pavadinimas:<br> {{ record.name }}</a>
+                    <a href=" {% url 'notebook:user-record' record.pk %} ">Įrašo pavadinimas:<br> {{ record.name }}</a>
                     <p>Kategorija:</p>
                     <p>{{ record.category.name }}</p>
                     {% if record.image %}
