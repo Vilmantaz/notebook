@@ -136,6 +136,15 @@ class RecordUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateVi
         record = self.get_object()
         return self.request.user == record.user
 
+class RecordDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = Record
+    success_url = reverse_lazy('notebook:categories')
+    template_name = 'notebook/category_record_delete.html'
+
+    def test_func(self):
+        record = self.get_object()
+        return self.request.user == record.user
+
 
 @login_required
 def UserCategoriesCreate(request):
@@ -177,12 +186,13 @@ class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.Delete
         category = self.get_object()
         return self.request.user == category.user
 
+ 
+class UserRecordDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Record
+    template_name = 'notebook/user_record.html'
+
 @login_required
 def search(request):
     query = request.GET.get('query')
     search_results = Record.objects.filter(Q(name__icontains=query))
     return render(request, 'notebook/search.html', {'records': search_results, 'query': query})
- 
-class UserRecordDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Record
-    template_name = 'notebook/user_record.html'
