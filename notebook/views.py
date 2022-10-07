@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, RecordCreateForm
+from .forms import RecordCreateForm
 
 
 
@@ -72,40 +72,41 @@ class RecordsListView(LoginRequiredMixin, generic.ListView):
     # def get_queryset(self):
     #         return Record.objects.filter(user=self.request.user)
 
-# def register(request):
-#     if request.method == "POST":
-#         username = request.POST['username']
-#         email = request.POST['email']
-#         password = request.POST['password']
-#         password2 = request.POST['password2']
-#         if password == password2:
-#             if User.objects.filter(username=username).exists():
-#                 messages.error(request, f'Vartotojo vardas {username} užimtas!')
-#                 return redirect('notebook:register')
-#             else:
-#                 if User.objects.filter(email=email).exists():
-#                     messages.error(request, f'Vartotojas su el. paštu {email} jau užregistruotas!')
-#                     return redirect('notebook:register')
-#                 else:
-#                     User.objects.create_user(username=username, email=email, password=password)
-#         else:
-#             messages.error(request, 'Slaptažodžiai nesutampa!')
-#             return redirect('notebook:register')
-#     return render(request, 'notebook/register.html')
-
 def register(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            User.objects.create_user(
-                username=form.cleaned_data['username'], 
-                email=form.cleaned_data['email'], 
-                password=form.cleaned_data['password'])
-            messages.info(request, 'Registracija sėkminga')
+    if request.method == "POST":
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        if password == password2:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, f'Vartotojo vardas {username} užimtas!')
+                return redirect('notebook:register')
+            else:
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, f'Vartotojas su el. paštu {email} jau užregistruotas!')
+                    return redirect('notebook:register')
+                else:
+                    User.objects.create_user(username=username, email=email, password=password)
+                    return redirect('login')
+        else:
+            messages.error(request, 'Slaptažodžiai nesutampa!')
             return redirect('notebook:register')
-    else:
-        form = RegistrationForm()
-    return render(request, 'notebook/register.html', {'form': form})
+    return render(request, 'notebook/register.html')
+
+# def register(request):
+#     if request.method == 'POST':
+#         form = RegistrationForm(request.POST)
+#         if form.is_valid():
+#             User.objects.create_user(
+#                 username=form.cleaned_data['username'], 
+#                 email=form.cleaned_data['email'], 
+#                 password=form.cleaned_data['password'])
+#             messages.info(request, 'Registracija sėkminga')
+#             return redirect('notebook:register')
+#     else:
+#         form = RegistrationForm()
+#     return render(request, 'notebook/register.html', {'form': form})
 
 
 @login_required

@@ -107,6 +107,21 @@ body header .title h1 {
     width: 30vw;
 }
 
+.logged-out-form {
+    height: 30rem;
+    text-align: center;
+}
+
+.logged-out-form p {
+    font-size: 2rem;
+}
+
+.logged-out-form a {
+    text-decoration: none;
+    font-size: 2rem;
+    color: rgba(104, 3, 3, 0.895);
+}
+
 .mainblock {
     display: flex;
 }
