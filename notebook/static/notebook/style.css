@@ -1,5 +1,7 @@
 body {
-    background-color: beige;
+    background: url("/static/notebook_background_wood.jpg") 50% 0 no-repeat fixed;
+    background-size: cover;
+    background-size: 100% 100%;
 }
 body header {
     height: 5rem;
@@ -175,4 +177,43 @@ body header .title h1 {
     color: black;
     font-size: 1.5rem;
     text-align: center;
+}
+
+.new-record-block {
+    margin: auto;
+    width:40%;
+}
+
+.new-record-fieldset {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    
+}
+
+.new-record-legend{
+    font-size: 2rem;   
+    color: brown;
+}
+
+.new-record-button button {
+    width: 8rem;
+    height: 2rem;
+    border-radius: 5px;
+    color: brown;
+    margin-top: 1rem;
+}
+
+.new-record-fieldset label {
+    color: brown;
+}
+
+.new-record-fieldset input, select {
+    height: 1.5rem;
+    border-radius: 5px;
+}
+
+.new-record-fieldset textarea {
+    border-radius: 5px;
+    height: 5rem;
 }

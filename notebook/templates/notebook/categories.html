@@ -12,11 +12,9 @@
             {% endfor %}
         
         {% else %}
-            <p>Nieko nėra</p>
+            <p>Susikurkite Kategoriją</p>
         {% endif %}
         <li class="nav-item"><a class="nav-link" href="{% url 'notebook:categories-new'%}">Nauja kategorija</a></li>
-    
-  
     </div>
     
     <div class="category-div">
@@ -31,7 +29,7 @@
                 </div>
             {% endfor %}
             {% else %}
-                <p>Nieko nėra</p>
+                <p>Kategorijų nėra</p>
             {% endif %}
         </div>
     </div>

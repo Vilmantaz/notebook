@@ -11,31 +11,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import RecordCreateForm
 
 
-
-
-
-
-def index(request):
-    
-    categories = Category.objects.all()
-
-    records = Record.objects.all()  
-    records_num = Record.objects.count()
-
-    context = {
-        'categories': categories,
-        'records': records,
-        'records_num': records_num,
-    }
-    return render(request, 'notebook/index.html', context=context)
-
-
-# def user_categories(request):
-#     if request.user.is_authenticated:
-        
-#         categories = User.category
-#     return render(request, 'notebook/categories.html', {'categories': categories})
-
 class CategoriesListView(LoginRequiredMixin, generic.ListView):
    model = Category
    context_object_name = 'user_categories'
@@ -52,25 +27,7 @@ class RecordsListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         category_id = self.kwargs['pk']
         return Record.objects.filter(user=self.request.user).filter(category_id = category_id)
-    
 
-# def user_categories(request):
-#     if request.user.is_authenticated:
-#         categories = UserCategory.category.name
-#         context = {
-#             'categories': categories
-#         }
-#     return render(request, 'notebook/categories.html', context=context)
-
-# class UserRecordListView(LoginRequiredMixin, generic.ListView):
-#     model = UserRecord
-#     model = UserCategory
-#     context_object_name = 'user_categories'
-#     context_object_name = 'user_records'
-#     template_name ='notebook/categories.html'
-
-    # def get_queryset(self):
-    #         return Record.objects.filter(user=self.request.user)
 
 def register(request):
     if request.method == "POST":
@@ -93,21 +50,6 @@ def register(request):
             messages.error(request, 'Slaptažodžiai nesutampa!')
             return redirect('notebook:register')
     return render(request, 'notebook/register.html')
-
-# def register(request):
-#     if request.method == 'POST':
-#         form = RegistrationForm(request.POST)
-#         if form.is_valid():
-#             User.objects.create_user(
-#                 username=form.cleaned_data['username'], 
-#                 email=form.cleaned_data['email'], 
-#                 password=form.cleaned_data['password'])
-#             messages.info(request, 'Registracija sėkminga')
-#             return redirect('notebook:register')
-#     else:
-#         form = RegistrationForm()
-#     return render(request, 'notebook/register.html', {'form': form})
-
 
 @login_required
 def profile(request):

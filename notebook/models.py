@@ -17,7 +17,7 @@ class Record(models.Model):
     name = models.CharField('Pavadinimas', max_length=200)
     creation_date = models.DateTimeField(auto_now_add=True)
     content = HTMLField()
-    image = models.ImageField('Paveikslėlis', upload_to='images', null=True)
+    image = models.ImageField('Paveikslėlis', upload_to='images', blank = True, null = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, related_name='category')
 

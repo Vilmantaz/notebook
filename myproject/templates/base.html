@@ -16,7 +16,6 @@
         <div class="reglinks">
             {% if user.is_authenticated %}
                 <a href="{% url 'notebook:profile' %}">{{ user.get_username }}</a>
-                <a href="{% url 'notebook:index' %}">Pradžia</a>
                 <a href="{% url 'notebook:record-new'%}">Naujas Įrašas</a>
                 <a href="{% url 'notebook:categories' %}">Kategorijos</a>
                 <a href="{% url 'logout' %}">Atsijungti</a>
