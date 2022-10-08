@@ -1,25 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div>
-        <h1> {{ object.name }} </h1>
-        <p> {{ object.content | safe }} </p>
-        {% if  object.image  %}
-            <img src="{{ object.image.url }}" width="500" height="300" class="card-img-top" alt="...">
-        {% else %}
-            <img src="https://via.placeholder.com/150x100" class="card-img-top">
-        {% endif %}
-        <p>Įrašas sukurtas: {{ object.creation_date }} </p>
+    <div class="single-record-block">
+        <div class="single-record">
+            <div class="record-data">
+                <h1> {{ object.name }} </h1>
+                <p> {{ object.content | safe }} </p>
+                <p>Įrašas sukurtas: {{ object.creation_date }} </p>
+            </div>
+            <div class="record-img">
+                {% if  object.image  %}
+                    <img src="{{ object.image.url }}" width="500" height="300" class="card-img-top" alt="...">
+                {% else %}
+                    <img src="https://via.placeholder.com/150x100" class="card-img-top">
+                {% endif %}
+            </div>
+        </div>
     </div>
-
-    {% comment %}
-    <hr>
-        <ul>
-        <img class="rounded-circle" src="{{object.reader.profilis.nuotrauka.url}}">
-        <li><strong class="{% if object.is_overdue %}text-danger{% endif %}">Pavadinimas: {{object.book.title}}</strong></li>
-        <li><strong>Gražinimo terminas:</strong> {{object.due_back}}</li>
-        <br/>
-      </li>
-    </ul>
-    {% endcomment %}
 {% endblock %}

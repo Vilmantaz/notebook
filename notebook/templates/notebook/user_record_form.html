@@ -6,10 +6,10 @@
             <div class="new-record-block">
                 <fieldset class="new-record-fieldset">
                     <legend class="new-record-legend">Naujas įrašas</legend>
-                    {{ form }}
+                    {{ form | safe }}
                 </fieldset>
                 <div class="new-record-button">
-                    <button class="btn btn-outline-info" type="submit">Išsaugoti</button>
+                    <button type="submit">Išsaugoti</button>
                 </div>
             </div>
         </form>

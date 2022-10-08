@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form class="" action="{% url 'notebook:search' %}" method="GET">
-        <input class="" type="search" placeholder="Paieška" aria-label="Search" name="query">
+    <form class="search-form" action="{% url 'notebook:search' %}" method="GET">
+        <input class="" type="search" placeholder="Paieška pagal pavadinimą" aria-label="Search" name="query">
         <button class="" type="submit">Ieškoti</button>
     </form>
     <div class="record-block">
