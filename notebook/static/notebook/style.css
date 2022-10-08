@@ -8,13 +8,18 @@ body header {
     background-color: rgb(255, 142, 101);
     padding: 1rem;
     display: flex;
+    justify-content: space-between;
 }
 
-body header .title {
+body header .title{
     color: rgb(50, 103, 200);
-    font-size: 1.3rem;
-    margin: auto;
-    
+    font-size: 2rem;
+
+}
+
+body header .notebook-img {
+    width: 5rem;
+    padding: 1rem;
 }
 
 body header .reglinks {
@@ -31,6 +36,17 @@ body header .reglinks a {
 
 body header .title h1 {
     margin: 0;
+}
+
+.index-block h1, h3{
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.index-block h3 a {
+    color: rgba(104, 3, 3, 0.895);
+    text-decoration: none;
+    font-size: 2rem;
 }
 
 .regform {
@@ -132,23 +148,53 @@ body header .title h1 {
     width: 25%;
 }
 
+.category-block h1 {
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.category-block li a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: rgba(104, 3, 3, 0.895);
+}
+
 .category-div {
     width: 75%;
+}
+
+.category-div h1 {
+    color: rgba(104, 3, 3, 0.895);
+    text-align: center;
 }
 
 .single-category {
     width: 200px; 
     height: 200px; 
-    background-color:rgb(205, 163, 108);
+    background-color: coral;
     margin: 2rem;
     text-align: center;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.single-category-title {
+    border: 1px solid brown;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    border-radius: 1rem;
 }
 
 .single-category a {
     text-decoration: none;
-    color: black;
-    
-    
+    font-size: 1.5rem;
+    color: rgba(104, 3, 3, 0.895);
+    display: block;
+}
+
+.single-category hr {
+    width: 3rem;
 }
 
 .record-block {
@@ -158,25 +204,60 @@ body header .title h1 {
 
 .record-div {
     width: 20rem;
-    height: 17rem;
-    background-color: chocolate;
+    height: 20rem;
+    background-color:coral;
     margin: 2rem;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
-.record-div p {
-    margin: 0;
+.record-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 70%;
 }
 
-.record-div a {
-    padding: 1.5rem;
+.record-content a {
     text-decoration: none;
-    color: black;
+    color: rgba(104, 3, 3, 0.895);
     font-size: 1.5rem;
     text-align: center;
+}
+
+
+.record-content p {
+    margin: 0;
+    color: rgba(104, 3, 3, 0.895);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.record-content img {
+    margin: auto;
+    border-radius: 1rem;
+}
+
+.record-upd_del p {
+    margin: 0;
+    text-align: center;
+}
+
+.record-upd_del p a {
+    display: block;
+    text-decoration: none;
+    color: rgba(104, 3, 3, 0.895);
+    font-size: 1.5rem;
+    text-align: center;
+    
+}
+
+.record-upd_del hr {
+    margin: 0;
 }
 
 .new-record-block {

@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="title">
-            <h1>Mano Užrašai</h1>
+                <h1>Mano Užrašai </h1>
         </div>
         <div class="reglinks">
             {% if user.is_authenticated %}
@@ -20,7 +20,7 @@
                 <a href="{% url 'notebook:categories' %}">Kategorijos</a>
                 <a href="{% url 'logout' %}">Atsijungti</a>
             {% else %}
-                <a href="{% url 'notebook:register'%}">Registracija</a>
+                <a href="{% url 'notebook:register'%}">Registruotis</a>
                 <a href="{% url 'login' %}?next={% url 'notebook:index' %}">Prisijungti</a>
             {% endif %}
         </div>

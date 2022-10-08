@@ -10,6 +10,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .forms import RecordCreateForm
 
+def index(request):
+
+    return render(request, 'notebook/index.html')
+
 
 class CategoriesListView(LoginRequiredMixin, generic.ListView):
    model = Category
@@ -70,6 +74,10 @@ class RecordUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateVi
     fields = ['name', 'content', 'image']
     success_url = reverse_lazy('notebook:categories')
     template_name = 'notebook/user_record_form.html'
+
+    # def get_success_url(self):
+    #     record_pk = self.kwargs["pk"]
+    #     return reverse_lazy("notebook:categorie_records", kwargs={"pk": record_pk})
 
     def form_valid(self, form):
         form.instance.user = self.request.user

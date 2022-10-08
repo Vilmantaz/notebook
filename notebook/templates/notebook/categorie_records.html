@@ -7,19 +7,22 @@
     </form>
     <div class="record-block">
         {% if user_records %}
-            
             {% for record in user_records %}
                 <div class="record-div">
-                    <a href=" {% url 'notebook:user-record' record.pk %} ">Įrašo pavadinimas:<br> {{ record.name }}</a>
-                    <p>Kategorija:</p>
-                    <p>{{ record.category.name }}</p>
-                    {% if record.image %}
-                        <img src="{{ record.image.url }}" width="150" height="100" class="card-img-top" alt="...">
-                    {% else %}
-                        <img src="https://via.placeholder.com/150x100" class="card-img-top">
-                    {% endif %}
-                    <p><a href="{% url 'notebook:category-record-update' record.id %}"> Redaguoti</a></p>
-                    <p><a href="{% url 'notebook:category-record-delete' record.id %}"> Ištrinti </a></p>
+                    <div class="record-content">
+                        <a href=" {% url 'notebook:user-record' record.pk %} ">Įrašo pavadinimas:<br><b>{{ record.name }}</b></a>
+                        <p>Kategorija: <br><b>{{ record.category.name }}</b></p>
+                        {% if record.image %}
+                            <img src="{{ record.image.url }}" width="150" height="100" class="card-img-top" alt="...">
+                        {% else %}
+                            <img src="https://via.placeholder.com/150x100" class="card-img-top">
+                        {% endif %}
+                    </div>
+                    <div class="record-upd_del">
+                        <p><a href="{% url 'notebook:category-record-update' record.id %}"> Redaguoti</a></p>
+                        <hr>
+                        <p><a href="{% url 'notebook:category-record-delete' record.id %}"> Ištrinti </a></p>
+                    </div>
                 </div>
             {% endfor %}
         {% else %}

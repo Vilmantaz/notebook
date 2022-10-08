@@ -32,5 +32,5 @@ class RecordCreateForm(forms.ModelForm):
 
     class Meta:
         model = Record
-        fields = ['name', 'content', 'image', 'category']
+        fields = ['name', 'content', 'image', 'category',]
  
