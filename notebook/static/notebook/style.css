@@ -1,3 +1,381 @@
 body {
-    background-color: beige;
+    background: url("/static/notebook_background_wood.jpg") 50% 0 no-repeat fixed;
+    background-size: cover;
+    background-size: 100% 100%;
+}
+body header {
+    height: 5rem;
+    background-color: rgb(255, 142, 101);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+body header .title{
+    color: rgb(124, 7, 7);
+    font-size: 2rem;
+
+}
+
+body header .notebook-img {
+    width: 5rem;
+    padding: 1rem;
+}
+
+body header .reglinks {
+    display: flex;
+}
+
+body header .reglinks a {
+    color: rgba(104, 3, 3, 0.895);
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: auto;
+    padding: 0.5rem;
+}
+
+body header .title h1 {
+    margin: 0;
+}
+
+.messages-block {
+    margin-top: 1rem;
+    text-align: -webkit-center;
+}
+
+.alert-danger {
+    background-color: rgb(235, 84, 84);
+    width: 50%;
+    text-align: center;
+    height: 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+.alert-info {
+    background-color: rgb(107, 231, 107);
+    width: 50%;
+    text-align: center;
+    height: 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+.index-block h1, h3{
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.index-block h3 a {
+    color: rgba(104, 3, 3, 0.895);
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.regform {
+    margin: auto;
+    width: 35vw;
+}
+
+.regform h3 {
+    font-size: 2rem;
+    text-align: center;
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.regformcell {
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.regformcell label {
+    font-size: 1.2rem;
+    color: brown;
+}
+
+.regformcell input {
+    height: 2rem;
+    border-radius: 5px;
+}
+
+.regform button {
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+}
+
+.regform p {
+    margin: 1.5rem;
+}
+.regform p a {
+    text-decoration: none;
+    font-size: large;
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.loginform {
+    margin: auto;
+    margin-top: 6rem;
+    width: 35vw;
+}
+
+.loginform p a {
+    text-decoration: none;
+    font-size: large;
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.loginsubmit {
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+}
+
+.logintable tr {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.loginlabel {
+    font-size: 1.2rem;
+    color: brown;
+}
+.logininput input {
+    height: 2rem;
+    border-radius: 5px;
+    width: 30vw;
+}
+
+.logged-out-form {
+    height: 30rem;
+    text-align: center;
+}
+
+.logged-out-form p {
+    font-size: 2rem;
+}
+
+.logged-out-form a {
+    text-decoration: none;
+    font-size: 2rem;
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.mainblock {
+    display: flex;
+}
+
+.category-block {
+    width: 25%;
+}
+
+.category-block h1 {
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.category-block li a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.category-div {
+    width: 75%;
+}
+
+.category-div h1 {
+    color: rgba(104, 3, 3, 0.895);
+    text-align: center;
+}
+
+.single-category {
+    width: 200px; 
+    height: 200px; 
+    background-color: coral;
+    margin: 2rem;
+    text-align: center;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.single-category-title {
+    border: 1px solid brown;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    border-radius: 1rem;
+}
+
+.single-category a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: rgba(104, 3, 3, 0.895);
+    display: block;
+}
+
+.single-category hr {
+    width: 3rem;
+}
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.search-form input {
+    width: 25%;
+    height: 2rem;
+    border-radius: 5px;
+}
+
+.search-form button {
+    margin-left: 1rem;
+    border-radius: 5px;
+}
+
+.record-block {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.record-div {
+    width: 20rem;
+    height: 20rem;
+    background-color:coral;
+    margin: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.record-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 70%;
+}
+
+.record-content a {
+    text-decoration: none;
+    color: rgba(104, 3, 3, 0.895);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+
+.record-content p {
+    margin: 0;
+    color: rgba(104, 3, 3, 0.895);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.record-content img {
+    margin: auto;
+    border-radius: 1rem;
+}
+
+.record-upd_del p {
+    margin: 0;
+    text-align: center;
+}
+
+.record-upd_del p a {
+    display: block;
+    text-decoration: none;
+    color: rgba(104, 3, 3, 0.895);
+    font-size: 1.5rem;
+    text-align: center;
+    
+}
+
+.record-upd_del hr {
+    margin: 0;
+}
+
+.new-record-block {
+    margin: auto;
+    width:40%;
+}
+
+.new-record-fieldset {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    
+}
+
+.new-record-legend{
+    font-size: 2rem;   
+    color: brown;
+}
+
+.new-record-button button {
+    width: 8rem;
+    height: 2rem;
+    border-radius: 5px;
+    color: brown;
+    margin-top: 1rem;
+}
+
+.new-record-fieldset label {
+    color: brown;
+}
+
+.new-record-fieldset input, select {
+    height: 1.5rem;
+    border-radius: 5px;
+}
+
+.new-record-fieldset textarea {
+    border-radius: 5px;
+    height: 5rem;
+}
+
+.single-record-block {
+    margin: auto;
+    width: 60%;
+}
+
+.single-record {
+    display: flex;
+    height: 60vh;
+    justify-content: space-between;
+}
+.single-record .record-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.single-record .record-img {
+    margin-top: 4rem;
+} 
+
+.pagination {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.pagination .step-links a {
+    text-decoration: none;
+    margin: 0.5rem;
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.profile-block {
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.profile-block img {
+    border-radius: 2rem
 }

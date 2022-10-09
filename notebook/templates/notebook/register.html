@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="messages-block">
+        {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert-danger">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="alert-info">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+    <div class="regform">
+        <h3>Registracija</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="regformcell">
+                <label for="username">Vartotojo vardas</label>
+                <input name="username" type="text" id="username" aria-describedby="usernameHelp">
+                <small id="usernameHelp">Iki 150 simbolių.</small>
+            </div>
+            <div class="regformcell">
+                <label for="email">El. paštas</label>
+                <input name="email" type="email" id="email" aria-describedby="emailHelp">
+                <small id="emailHelp">Nesidalinsime su niekuo, nesiųsime jokio spamo.
+                    Reikalingas naujam slaptažodžiui išsiųsti. </small>
+            </div>
+            <div class="regformcell">
+                <label for="password">Slaptažodis</label>
+                <input name="password" type="password" id="password">
+            </div>
+            <div class="regformcell">
+                <label for="password2">Pakartoti slaptažodį</label>
+                <input name="password2" type="password" id="password2">
+            </div>
+            <button class="regformcell" class="regbutton" type="submit">Registruotis</button>
+        </form>
+        <p>Jeigu užsiregistravote anksčiau, <a href="#"><strong>prisijunkite.</strong></a></p>
+    </div>
+
+{% endblock %}

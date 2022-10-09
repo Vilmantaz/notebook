@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mainblock">
+    <div class="category-block">
+        <h1>Mano Kategorijos</h1>
+        {% if user_categories %}
+            {% for category in user_categories %}
+                <li><a href="{{category.id}}"> {{category.name}}</a></li>
+            {% endfor %}
+            <h1>Susikurkite Kategoriją</h1>
+        {% endif %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'notebook:categories-new'%}">Nauja kategorija</a></li>
+    </div>
+    
+    <div class="category-div">
+        <h1>Pasirinkite kategoriją</h1>
+        <div style="display: flex; flex-wrap: wrap;">
+            {% if user_categories %}
+            {% for category in user_categories %}
+                <div  class="single-category">
+                    <div class="single-category-title">
+                        <a href="{{category.id}}"> {{category.name}}</a>
+                    </div>
+                    <div>
+                        <a href="{% url 'notebook:user-category-update' category.id %}">Redaguoti</a>
+                        <hr>
+                        <a href="{% url 'notebook:user-category-delete' category.id %}">Ištrinti</a>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+                <p>Kategorijų nėra</p>
+            {% endif %}
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; pirmas</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">atgal</a>
+                {% endif %}
+        
+                <span class="current">
+                    {{ page_obj.number }} iš {{ page_obj.paginator.num_pages }}
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">pirmyn</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">paskutinis &raquo;</a>
+                {% endif %}
+            </span>
+        </div> 
+    </div>
+
+</div>
+{% endblock %}

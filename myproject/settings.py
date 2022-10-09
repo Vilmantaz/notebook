@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'notebook',
     'tinymce',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -108,6 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+DATETIME_FORMAT = 'Y-m-d H:i:s'
+USE_L10N = False
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -128,8 +132,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'notebook/media')
 MEDIA_URL = 'media/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/notebook/categories/'
 
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '1167d2c5c86f77'
+EMAIL_HOST_PASSWORD = '1acb16f935eb78'
+EMAIL_PORT = '2525'
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,

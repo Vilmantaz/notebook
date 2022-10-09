@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="single-record-block">
+        <div class="single-record">
+            <div class="record-data">
+                <h1> {{ object.name }} </h1>
+                <p> {{ object.content | safe }} </p>
+                <p>Įrašas sukurtas: {{ object.creation_date }} </p>
+            </div>
+            <div class="record-img">
+                {% if  object.image  %}
+                    <img src="{{ object.image.url }}" width="500" height="300" class="card-img-top" alt="...">
+                {% else %}
+                    <img src="https://via.placeholder.com/150x100" class="card-img-top">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

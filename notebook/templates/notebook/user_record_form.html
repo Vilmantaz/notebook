@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="messages-block">
+        {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert-danger">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="alert-info">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="content-section">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="new-record-block">
+                <fieldset class="new-record-fieldset">
+                    <legend class="new-record-legend">Naujas įrašas</legend>
+                    {{ form | safe }}
+                </fieldset>
+                <div class="new-record-button">
+                    <button type="submit">Išsaugoti</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="new-record-block">
+            <fieldset class="new-record-fieldset">
+                <legend class="new-record-legend">Ištrinti Įrašą</legend>
+                <h2 style="text-align: center;">Ar tikrai norite ištrinti Įrašą <p style="text-align: center; color: rgba(104, 3, 3, 0.895);"> {{ record.name }}? </p></h2>
+            </fieldset>
+            <div class="new-record-button">
+                <button type="submit">Taip, ištrinti</button>
+                <a style="color: rgba(104, 3, 3, 0.895); text-decoration:none;" href="{% url 'notebook:categories' %}">Atšaukti</a>
+            </div>
+        </div>
+        
+    </form>
+    </div>
+{% endblock content %}

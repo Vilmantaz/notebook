@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h3>Kategorijos</h3>
-    {% if categories %}
-        {% for category in categories %}
-            <li> {{category}} </li>
-        {% endfor %}
-    {% endif %}
+<div class="index-block">
+    <h1>SVEIKI PRISIJUNGĘ!</h1>
+    <h1><img class="notebook-img" src="/static/notebook.jpg" alt="app_logo"></h1>
+    <h3><a href="{% url 'notebook:register'%}">Registruotis</a></h3>
+    <h3><a href="{% url 'login' %}?next={% url 'notebook:categories' %}">Prisijungti</a></h3>
+</div>
 {% endblock %}
