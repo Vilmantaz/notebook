@@ -12,7 +12,7 @@ body header {
 }
 
 body header .title{
-    color: rgb(50, 103, 200);
+    color: rgb(124, 7, 7);
     font-size: 2rem;
 
 }
@@ -36,6 +36,28 @@ body header .reglinks a {
 
 body header .title h1 {
     margin: 0;
+}
+
+.messages-block {
+    margin-top: 1rem;
+    text-align: -webkit-center;
+}
+
+.alert-danger {
+    background-color: rgb(235, 84, 84);
+    width: 50%;
+    text-align: center;
+    height: 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+.alert-info {
+    background-color: rgb(107, 231, 107);
+    width: 50%;
+    text-align: center;
+    height: 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
 }
 
 .index-block h1, h3{
@@ -335,3 +357,25 @@ body header .title h1 {
 .single-record .record-img {
     margin-top: 4rem;
 } 
+
+.pagination {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.pagination .step-links a {
+    text-decoration: none;
+    margin: 0.5rem;
+    color: rgba(104, 3, 3, 0.895);
+}
+
+.profile-block {
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.profile-block img {
+    border-radius: 2rem
+}

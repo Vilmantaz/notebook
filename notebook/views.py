@@ -19,6 +19,7 @@ class CategoriesListView(LoginRequiredMixin, generic.ListView):
    model = Category
    context_object_name = 'user_categories'
    template_name ='notebook/categories.html'
+   paginate_by = 4
 
    def get_queryset(self):
         return Category.objects.filter(user=self.request.user)
@@ -27,6 +28,7 @@ class RecordsListView(LoginRequiredMixin, generic.ListView):
     model = Record
     context_object_name = 'user_records'
     template_name ='notebook/categorie_records.html'
+    paginate_by = 4
 
     def get_queryset(self):
         category_id = self.kwargs['pk']
