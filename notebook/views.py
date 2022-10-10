@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from django.urls import reverse, reverse_lazy
-from .models import Category, Record, Profile
+from django.urls import reverse_lazy
+from .models import Category, Record
 from django.shortcuts import redirect
 from django.contrib.auth.forms import User
 from django.contrib import messages
-from django.db.models import Q
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
@@ -14,25 +13,6 @@ def index(request):
 
     return render(request, 'notebook/index.html')
 
-
-class CategoriesListView(LoginRequiredMixin, generic.ListView):
-   model = Category
-   context_object_name = 'user_categories'
-   template_name ='notebook/categories.html'
-   paginate_by = 4
-
-   def get_queryset(self):
-        return Category.objects.filter(user=self.request.user)
-
-class RecordsListView(LoginRequiredMixin, generic.ListView):
-    model = Record
-    context_object_name = 'user_records'
-    template_name ='notebook/categorie_records.html'
-    paginate_by = 4
-
-    def get_queryset(self):
-        category_id = self.kwargs['pk']
-        return Record.objects.filter(user=self.request.user).filter(category_id = category_id)
 
 
 def register(request):
@@ -61,11 +41,38 @@ def register(request):
 def profile(request):
     return render(request, 'notebook/profile.html')
 
+
+class RecordsListView(LoginRequiredMixin, generic.ListView):
+    model = Record
+    context_object_name = 'user_records'
+    template_name ='notebook/categorie_records.html'
+    paginate_by = 4
+
+    def get_queryset(self):
+        category_id = self.kwargs['pk']
+        return Record.objects.filter(user=self.request.user).filter(category_id = category_id)
+
+ 
+class UserRecordDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
+    model = Record
+    template_name = 'notebook/user_record.html'
+
+    def test_func(self):
+        record = self.get_object()
+        return self.request.user == record.user
+
 class RecordCreateView(LoginRequiredMixin, generic.CreateView):
     model = Record
-    success_url = reverse_lazy('notebook:categories')
     template_name = 'notebook/user_record_form.html'
     form_class = RecordCreateForm
+
+    def get_success_url(self):
+        return reverse_lazy("notebook:categorie_records", kwargs={"pk": self.object.category_id})
+
+    def get_form_kwargs(self):
+        kwargs = super(RecordCreateView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -74,12 +81,10 @@ class RecordCreateView(LoginRequiredMixin, generic.CreateView):
 class RecordUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Record
     fields = ['name', 'content', 'image']
-    success_url = reverse_lazy('notebook:categories')
     template_name = 'notebook/user_record_form.html'
 
-    # def get_success_url(self):
-    #     record_pk = self.kwargs["pk"]
-    #     return reverse_lazy("notebook:categorie_records", kwargs={"pk": record_pk})
+    def get_success_url(self):
+        return reverse_lazy("notebook:categorie_records", kwargs={"pk": self.object.category_id})
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -88,6 +93,7 @@ class RecordUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateVi
     def test_func(self):
         record = self.get_object()
         return self.request.user == record.user
+
 
 class RecordDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = Record
@@ -97,6 +103,16 @@ class RecordDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteVi
     def test_func(self):
         record = self.get_object()
         return self.request.user == record.user
+
+
+class CategoriesListView(LoginRequiredMixin, generic.ListView):
+   model = Category
+   context_object_name = 'user_categories'
+   template_name ='notebook/categories.html'
+   paginate_by = 4
+
+   def get_queryset(self):
+        return Category.objects.filter(user=self.request.user)
 
 
 @login_required
@@ -119,6 +135,7 @@ def UserCategoriesCreate(request):
 class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Category
     fields = ['name']
+    context_object_name = 'category_name'
     success_url = reverse_lazy('notebook:categories')
     template_name = 'notebook/user_categories_form.html'
 
@@ -139,13 +156,9 @@ class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.Delete
         category = self.get_object()
         return self.request.user == category.user
 
- 
-class UserRecordDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Record
-    template_name = 'notebook/user_record.html'
 
 @login_required
 def search(request):
     query = request.GET.get('query')
-    search_results = Record.objects.filter(Q(name__icontains=query))
+    search_results = Record.objects.filter(name__icontains=query).filter(user=request.user)
     return render(request, 'notebook/search.html', {'records': search_results, 'query': query})

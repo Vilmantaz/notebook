@@ -10,7 +10,7 @@
             {% endfor %}
             <h1>Susikurkite Kategoriją</h1>
         {% endif %}
-        <li class="nav-item"><a class="nav-link" href="{% url 'notebook:categories-new'%}">Nauja kategorija</a></li>
+        <li><a href="{% url 'notebook:categories-new'%}">Nauja kategorija</a></li>
     </div>
     
     <div class="category-div">
@@ -30,7 +30,7 @@
                 </div>
             {% endfor %}
             {% else %}
-                <p>Kategorijų nėra</p>
+                <h1>Kategorijų nėra</h1>
             {% endif %}
         </div>
         <div class="pagination">

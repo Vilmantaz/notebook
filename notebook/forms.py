@@ -5,10 +5,10 @@ from .models import Category, Record
 
 class RecordCreateForm(forms.ModelForm):
 
-    # def __init__(self,*args, user=None, **kwargs):
-    #     super(RecordCreateForm, self).__init__(*args, **kwargs)
-    #     if user is not None:
-    #         self.fields['category'].queryset = Category.objects.filter(user=user)
+    def __init__(self,*args, user=None, **kwargs):
+        super(RecordCreateForm, self).__init__(*args, **kwargs)
+        if user is not None:
+            self.fields['category'].queryset = Category.objects.filter(user=user)
 
     class Meta:
         model = Record
