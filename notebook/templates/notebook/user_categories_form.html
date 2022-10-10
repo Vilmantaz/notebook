@@ -20,8 +20,12 @@
     <form method="POST">
         {% csrf_token %}
         <div class="regformcell">
+            {% if category_name %}
+            <label for="name">Redaguoti kategorija</label>
+            {% else %}
             <label for="name">Nauja kategorija</label>
-            <input name="name" type="text" id="name" placeholder="Kategorijos pavadinimas">
+            {% endif %}
+            <input name="name" type="text" id="name" value="{{category_name}}" placeholder="Kategorijos pavadinimas">
         </div>
         <div class="form-group">
             <button class="regformcell" class="regbutton" type="submit">Išsaugoti</button>

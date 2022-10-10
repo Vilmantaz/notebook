@@ -26,7 +26,10 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p>Susikurkite Įrašą</p>
+            <div class="new-record-div">
+                <h1>Susikurkite Įrašą</h1>
+                <p><a href="{% url 'notebook:record-new'%}">Naujas Įrašas</a></p>
+            </div>
         {% endif %}
     </div>
     <div class="pagination">

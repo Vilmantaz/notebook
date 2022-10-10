@@ -300,6 +300,18 @@ body header .title h1 {
     margin: 0;
 }
 
+.new-record-div {
+    display: block;
+    text-align: center;
+    margin: auto;
+}
+
+.new-record-div p a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: rgba(104, 3, 3, 0.895);
+}
+
 .new-record-block {
     margin: auto;
     width:40%;
